@@ -3,11 +3,8 @@
 
 ![License](http://img.shields.io/:license-mit-blue.svg)
 
-A credentials 
+A credential checking framework
 
-<p align="center">
-<img src="https://camo.githubusercontent.com/1d694855203cdc5e6177f64a402c0f66000cd3b1/68747470733a2f2f696d6167652e6962622e636f2f666e4a6661762f657a6769665f636f6d5f766964656f5f746f5f6769665f312e676966">
-</p>
 
 # Features
 
