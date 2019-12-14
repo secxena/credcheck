@@ -1,0 +1,743 @@
+{
+    "slack-webhook": {
+        "helper": {
+            "_doc": "",
+            "help": "URL ~ Complete webhook is required"
+        },
+        "config": {
+            "url": "{URL}",
+            "args": {
+                "data": {
+                    "text": ""
+                },
+                "headers": {
+                    "content-type": "application/json"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "URL": ".*"
+        }
+    },
+    "slack-token": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ API key starts with xox.. required "
+        },
+        "config": {
+            "url": "https://slack.com/api/auth.test?token={KEY}&pretty=1",
+            "request-type": "post"
+        },
+        "static": {
+            "KEY": "(xox[p|b|o|a|a|s]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})"
+        }
+    },
+    "saucelabs": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Username and KEY ~ Access Key is required"
+        },
+        "config": {
+            "url": "https://saucelabs.com/rest/v1/users/{ID}",
+            "basic": {
+                "username": "{ID}",
+                "password": "{KEY}"
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "facebook-app-secret": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Client Id and KEY ~ client secret is required"
+        },
+        "config": {
+            "url": "https://graph.facebook.com/oauth/access_token?client_id={ID}&client_secret={KEY}&redirect_uri=&grant_type=client_credentials"
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "facebook_access_token": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ access token is required"
+        },
+        "config": {
+            "url": "https://developers.facebook.com/tools/debug/accesstoken/?access_token={TOKEN}&version=v3.2"
+        },
+        "static": {
+            "TOKEN": "EAACEdEose0cBA[0-9A-Za-z]+"
+        }
+    },
+    "firebase": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ customer key and TOKEN is required"
+        },
+        "config": [
+            {
+                "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=:{KEY}",
+                "args": {
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "data": {
+                        "custom_token": "{TOKEN}"
+                    }
+                },
+                "request-type": "post"
+            },
+            {
+                "url": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key={KEY}",
+                "args": {
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "data": {
+                        "id_token": "{_obtained_token}"
+                    }
+                },
+                "request-type": "post"
+            }
+        ],
+        "static": {
+            "KEY": ".*",
+            "TOKEN": ".*"
+        }
+    },
+    "github-token": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ API Key is required"
+        },
+        "config": {
+            "url": "https://api.github.com/user",
+            "basic": {
+                "username": "user",
+                "password": "{KEY"
+            }
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    },
+    "github-id-secret": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ client id and KEY ~ Client secret is required"
+        },
+        "config": {
+            "url": "https://api.github.com/users/whatever?client_id={ID}client_secret={KEY}"
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "google-cloud-messaging": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://gcm-http.googleapis.com/gcm/send",
+            "args": {
+                "data": {
+                    "registration_ids": [
+                        "1"
+                    ]
+                },
+                "headers": {
+                    "Authorization": "key={KEY}",
+                    "Content-Type": "application/json"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    },
+    "twilio": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Account SID and TOKEN ~ Auth Token is required "
+        },
+        "config": {
+            "url": "https://api.twilio.com/2010-04-01/Accounts.json",
+            "basic": {
+                "username": "{ID}",
+                "password": "{TOKEN}"
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "TOKEN": ".*"
+        }
+    },
+    "twitter": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ Api Key and TOKEN ~ Api Secret is required"
+        },
+        "config": {
+            "data": {
+                "grant_type": "client_credentials"
+            },
+            "url": "https://api.twitter.com/oauth2/token",
+            "basic": {
+                "username": "{KEY}",
+                "password": "{TOKEN}"
+            }
+        },
+        "static": {
+            "KEY": ".*",
+            "TOKEN": ".*"
+        }
+    },
+    "twitter-bearer": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN is required"
+        },
+        "config": {
+            "url": "https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json",
+            "args": {
+                "headerss": {
+                    "authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "devient-art": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN is required"
+        },
+        "config": {
+            "url": "https://www.deviantart.com/api/v1/oauth2/placebo",
+            "args": {
+                "data": {
+                    "access_token": "{TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "pendo-integration-key": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ Integration key is required"
+        },
+        "config": {
+            "url": "https://app.pendo.io/api/v1/feature",
+            "args": {
+                "headers": {
+                    "Content-Type": "application/json",
+                    "x-pendo-integration-key": "{KEY}"
+                }
+            }
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    },
+    "sendgrid": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN is required"
+        },
+        "config": {
+            "url": "https://api.sendgrid.com/v3/scopes",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}",
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "square": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ client id and KEY is required"
+        },
+        "config": {
+            "url": "https://squareup.com/oauth2/revoke",
+            "args": {
+                "data": {
+                    "access_token": "WellThisCanBeAnyThing",
+                    "client_id": "{ID}"
+                },
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Client {KEY}"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "ID": "sq0atp-[0-9A-Za-z\\-_]{22}",
+            "KEY": "sq0csp-[0-9A-Za-z\\-_]{43}"
+        }
+    },
+    "dropbox": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN is required"
+        },
+        "config": {
+            "url": "https://api.dropboxapi.com/2/users/get_current_account",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "mailgun": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ Private key is required, should start with `key-`"
+        },
+        "config": {
+            "url": "https://api.mailgun.net/v3/domains",
+            "basic": {
+                "username": "api",
+                "password": "{KEY}"
+            }
+        },
+        "static": {
+            "KEY": "key-[0-9a-zA-Z]{32}"
+        }
+    },
+    "razorpay": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Account ID and KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://api.razorpay.com/v1/payments",
+            "basic": {
+                "username": "{ID}",
+                "password": "{KEY}"
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "stripe": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN is required"
+        },
+        "config": {
+            "url": "https://api.stripe.com/v1/charges",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": "sk_live_[0-9a-zA-Z]{24}"
+        }
+    },
+    "paypal": {
+        "helper": {
+            "_doc": "",
+            "help": "ID and KEY is required"
+        },
+        "config": {
+            "url": "https://api.sandbox.paypal.com/v1/oauth2/token",
+            "basic": {
+                "username": "{ID}",
+                "password": "{KEY}"
+            },
+            "args": {
+                "headers": {
+                    "Accept": "application/json",
+                    "Accept-Language": "en_US"
+                },
+                "data": {
+                    "grant_type": "lient_credentials"
+                }
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "gitlab": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Private token is required"
+        },
+        "config": {
+            "url": "https://gitlab.example.com/api/v4/projects?private_token={TOKEN}"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "instagram": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ access token is required"
+        },
+        "config": {
+            "url": "https://api.instagram.com/v1/users/self/?access_token={TOKEN}"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "spotify": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ access token is required"
+        },
+        "config": {
+            "url": "https://api.spotify.com/v1/me",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "wakatime": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://wakatime.com/api/v1/users/current/projects/?api_key={KEY}"
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    },
+    "travis": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Access token is required"
+        },
+        "config": {
+            "url": "https://api.travis-ci.com/user",
+            "args": {
+                "headers": {
+                    "Authorization": "token {TOKEN}",
+                    "Travis-API-Version": 3
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "datadog": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Application key and KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://api.datadoghq.com/api/v1/dashboard?api_key={KEY}&application_key={ID}"
+        },
+        "static": {
+            "KEY": ".*",
+            "ID": ".*"
+        }
+    },
+    "wpengine": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Account Name and KEY ~ API Key is required"
+        },
+        "config": {
+            "url": "https://api.wpengine.com/1.2/?method=site&account_name={ID}&wpe_apikey={KEY}"
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "mailchimp": {
+        "helper": {
+            "_doc": "https://mailchimp.com/developer/guides/",
+            "help": "ID ~ your subdomain string and KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://{ID}.api.mailchimp.com/3.0/",
+            "basic": {
+                "username": "anystring",
+                "password": "{KEY}"
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": "[0-9a-f]{32}-us[0-9]{1,2}"
+        }
+    },
+    "zendesk": {
+        "helper": {
+            "_doc": "",
+            "help": "URL ~ subdomain of application and TOKEN ~ Access token is required"
+        },
+        "config": {
+            "url": "https://{URL}.zendesk.com/api/v2/tickets.json",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "URL": ".*",
+            "TOKEN": ".*"
+        }
+    },
+    "asana": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Access token is required"
+        },
+        "config": {
+            "url": "https://app.asana.com/api/1.0/users/me",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "buildkite": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Access token is required"
+        },
+        "config": {
+            "url": "https://api.buildkite.com/v2/user",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "bitly": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Access token is required"
+        },
+        "config": {
+            "url": "https://api-ssl.bitly.com/v3/shorten?access_token={TOKEN}&longUrl=https://www.google.com"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "branch": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ branch secret and KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://api2.branch.io/v1/app/{KEY}?branch_secret={TOKEN}"
+        },
+        "static": {
+            "KEY": "key_live_[0-9a-zA-Z]{24}",
+            "TOKEN": "secret_live_[0-9a-zA-Z]{24}"
+        }
+    },
+    "google_recaptcha": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ secret is required"
+        },
+        "config": {
+            "url": "https://www.google.com/recaptcha/api/siteverify",
+            "args": {
+                "data": {
+                    "secret": "{TOKEN}",
+                    "response": "ThisCanBeAnyThing"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "google_maps": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~ API key is required"
+        },
+        "config": {
+            "url": "https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=2500x2000&maptype=roadmap&key={KEY}"
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    },
+    "browserstacks": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ Username and KEY ~ access key is required"
+        },
+        "config": {
+            "url": "https://api.browserstack.com/automate/plan.json",
+            "basic": {
+                "username": "{ID}",
+                "password": "{KEY}"
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "pagerduty": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ access token is required"
+        },
+        "config": {
+            "url": "https://api.pagerduty.com/schedules",
+            "args": {
+                "headers": {
+                    "Authorization": "Token token={TOKEN}",
+                    "Accept": "application/vnd.pagerduty+json;version=2"
+                }
+            }
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "zapier-webhook": {
+        "helper": {
+            "_doc": "",
+            "help": "URL ~ complate URL of Webhook is required"
+        },
+        "config": {
+            "url": "{URL}",
+            "args": {
+                "headers": {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                "data": {
+                    "name": "CredentialsCheck"
+                }
+            },
+            "request-type": "post"
+        },
+        "static": {
+            "URL": ".*"
+        }
+    },
+    "algolia": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ app Id is required and KEY ~ Api key is required"
+        },
+        "config": {
+            "url": "https://{ID}-1.algolianet.com/1/indexes/example-index/settings",
+            "args": {
+                "headers": {
+                    "Content-Type": "application/json",
+                    "x-algolia-api-key": "{KEY}",
+                    "x-algolia-application-id": "{ID}"
+                },
+                "data": {
+                    "highlightPreTag": "<script>alert(1);</script>"
+                }
+            },
+            "request-type": "put"
+        },
+        "static": {
+            "ID": ".*",
+            "KEY": ".*"
+        }
+    },
+    "salesforce": {
+        "helper": {
+            "_doc": "",
+            "help": "ID ~ instance name and TOKEN ~ Authorization token is required"
+        },
+        "config": {
+            "url": "https://{ID}.salesforce.com/services/data/v20.0/",
+            "args": {
+                "headers": {
+                    "Authorization": "Bearer {TOKEN}"
+                }
+            }
+        },
+        "static": {
+            "ID": ".*",
+            "TOKEN": ".*"
+        }
+    },
+    "mapsbox": {
+        "helper": {
+            "_doc": "",
+            "help": "TOKEN ~ Access Token is required"
+        },
+        "config": {
+            "url": "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token={TOKEN}"
+        },
+        "static": {
+            "TOKEN": ".*"
+        }
+    },
+    "heroku": {
+        "helper": {
+            "_doc": "",
+            "help": "KEY ~API KEY is required"
+        },
+        "config": {
+            "url": "https://api.heroku.com/apps",
+            "args": {
+                "headers": {
+                    "Accept": "application/vnd.heroku+json; version=3",
+                    "Authorization": "Bearer {KEY}"
+                }
+            }
+        },
+        "static": {
+            "KEY": ".*"
+        }
+    }
+}
