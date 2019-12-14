@@ -1,6 +1,8 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/secxena/credcheck/master/credcheck.png">
 </p>
+<br>
+
 <p align="center">
   <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
@@ -12,6 +14,8 @@
     <img src="https://img.shields.io/badge/license-CC0-green.svg?style=flat-square" alt="CC0">
   </a>
 </p>
+<br>
+
 # Features
 
 - [x] Check credentils of given target. 
