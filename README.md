@@ -1,14 +1,17 @@
-
-# CredCheck
-
-![License](http://img.shields.io/:license-mit-blue.svg)
-
-A credential checking framework
-
 <p align="center">
 <img src="https://raw.githubusercontent.com/secxena/credcheck/master/credcheck.png">
 </p>
-
+<p align="center">
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
+  </a>
+    <a href="https://github.com">
+    <img src="https://img.shields.io/github/contributors/secxena/credcheck.svg" alt="Contributors">
+  </a>
+    <a href="https://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="https://img.shields.io/badge/license-CC0-green.svg?style=flat-square" alt="CC0">
+  </a>
+</p>
 # Features
 
 - [x] Check credentils of given target. 
