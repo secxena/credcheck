@@ -10,8 +10,8 @@
     <a href="https://github.com">
     <img src="https://img.shields.io/github/contributors/secxena/credcheck.svg" alt="Contributors">
   </a>
-    <a href="https://creativecommons.org/publicdomain/zero/1.0/">
-    <img src="https://img.shields.io/badge/license-CC0-green.svg?style=flat-square" alt="CC0">
+    <a href="https://www.gnu.org/licenses/gpl-3.0">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square" alt="GPLv3">
     </a>
     <a href="https://twitter.com/secxena">
     <img src="https://img.shields.io/twitter/follow/secxena.svg?logo=twitter">
