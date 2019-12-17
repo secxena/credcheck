@@ -12,9 +12,14 @@
   </a>
     <a href="https://creativecommons.org/publicdomain/zero/1.0/">
     <img src="https://img.shields.io/badge/license-CC0-green.svg?style=flat-square" alt="CC0">
-  </a>
+    </a>
+    <a href="https://twitter.com/secxena">
+    <img src="https://img.shields.io/twitter/follow/secxena.svg?logo=twitter">
+    </a>
 </p>
 <br>
+
+
 
 # Features
 
@@ -30,28 +35,29 @@
 - [ ] Pin-pointed regexes for Creds
 - [ ] Test cases
 - [ ] Multiple subparsers
-- [ ] CredCheck class for the library
 - [ ] Complete regex
 
 # Uses
 ## Command line usage
 ```
-python main.py --service strip --token sk_live_r3s7_0f_7h3_d37ails
+python main.py --service stripe --token sk_live_r3s7_0f_7h3_d37ails
 ```
 ## Library Usage
 ```python
 from credcheck.core.cred_check_active import dynamicTest
 from credcheck.core.cred_check_utils import CredUtils
-service = 'strip'
+service = 'stripe'
 credentials = {'TOKEN':'sk_live_r3s7_0f_7h3_d37ails'}
 stripCred = dynamicTest()
 stripCred.checkIt(service,credentails)
 ```
 ## Contributing
-- Areas to contribute
+###  Areas to contribute
 - Write test cases to make this framework more robust
 - Write regex for static testing of Credentials
 - Include complete API blocks from https://any-api.com/ to extend the scope of credcheck
+- Help document the code
+- Spread the word
 
 ### Prerequisites
 
@@ -67,6 +73,6 @@ pip install -r requirements.txt
 
 ## License
 
-This project is licensed under the MIT License
+Licensed under the GNU GPLv3, see [LICENSE](LICENSE) for more information.
 
 
