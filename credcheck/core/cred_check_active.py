@@ -16,7 +16,6 @@ class DynamicTest:
         :param target: name of the service to test
         :type target: str
         :param input_data: Credential variables ie key, Id, Token, Url
-        :type dict:
         :rtype : json - returned response from api call
         """
         config_block = self.cred_utils.data[target]

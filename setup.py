@@ -47,7 +47,7 @@ setup(
     author_email=__author_email__,
     include_package_data=True,
     url="",
-    install_requires=[],
+    install_requires=["paramiko==2.7.1", "requests==2.22.0"],
     setup_requires=["pytest-runner"],
     tests_require=["pytest", "mock", "PyHamcrest", "pytest-runner"],
     cmdclass={"test": PyTest},

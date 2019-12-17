@@ -116,7 +116,8 @@ class CredUtils:
         :rtype: -
         """
         if not helper_block["_verification_protocol"]:
-            helper_block[_helper_function] = "http"
+            # noinspection PyUnresolvedReferences
+            helper_block[_helper_function] = "http"  # TODO: Fix..?
         return helper_block
 
     def _required(self, data_block):
