@@ -44,12 +44,13 @@ python main.py --service stripe --token sk_live_r3s7_0f_7h3_d37ails
 ```
 ## Library Usage
 ```python
-from credcheck.core.cred_check_active import dynamicTest
+from credcheck.core.cred_check_active import DynamicTest
 from credcheck.core.cred_check_utils import CredUtils
+
 service = 'stripe'
 credentials = {'TOKEN':'sk_live_r3s7_0f_7h3_d37ails'}
-stripCred = dynamicTest()
-stripCred.checkIt(service,credentails)
+stripCred = DynamicTest()
+stripCred.check_it(service, credentials)
 ```
 ## Contributing
 ###  Areas to contribute

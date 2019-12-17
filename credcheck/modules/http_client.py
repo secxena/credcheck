@@ -1,26 +1,22 @@
 import logging
-from requests.exceptions import HTTPError
-from requests.auth import HTTPBasicAuth
-import json
 import warnings
+
 warnings.filterwarnings("ignore")
 logger = logging.getLogger(__name__)
-class BaseClient(object):
 
-    def __init__(self,verify_ssl=None,
-                    username=None, 
-                    password=None,
-                    api_timeout=None):
+
+class BaseClient:
+    def __init__(self, verify_ssl=None, username=None, password=None, api_timeout=None):
         """
         Basic HTTP client to facilitate all kind of requests
         """
         self.method_kwargs = {}
         if verify_ssl is not None:
-            self.method_kwargs['verify'] = verify_ssl
+            self.method_kwargs["verify"] = verify_ssl
         if username is not None and password is not None:
-            self.method_kwargs['auth'] = (username, password)
+            self.method_kwargs["auth"] = (username, password)
         if api_timeout is not None:
-            self.method_kwargs['timeout'] = api_timeout
+            self.method_kwargs["timeout"] = api_timeout
 
     def _http_response(self, url, method, **kwargs):
         """
@@ -33,7 +29,7 @@ class BaseClient(object):
         :rtype: - Response of the request
         """
         logger.debug("%s %s", method.__name__.upper(), url)
-        response = method(url, **self.method_kwargs,**kwargs)
+        response = method(url, **self.method_kwargs, **kwargs)
         logger.debug("%s %s", response.status_code, response.reason)
         return response
 
@@ -53,16 +49,15 @@ class BaseClient(object):
 
         return response.json()
 
-class CheckAPI(BaseClient):
 
+class CheckAPI(BaseClient):
     def __init__(self, *args, **kwargs):
         """
         Class to test rest APIs
         """
         super(CheckAPI, self).__init__(*args, **kwargs)
 
-
-    def _auth(self,url,method,**kwargs):
+    def _auth(self, url, method, **kwargs):
         """
         This will consume all kind of arguments ie. Headers, data
         etc to test if the service is working fine 
@@ -75,4 +70,4 @@ class CheckAPI(BaseClient):
         :rtype : - This will return a json/dict of the response if response
         is of type appliation/json else str
         """
-        return self._http_call(url,method,**kwargs)
+        return self._http_call(url, method, **kwargs)
