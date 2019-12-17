@@ -73,6 +73,6 @@ pip install -r requirements.txt
 
 ## License
 
-Licensed under the GNU GPLv3, see [LICENSE](LICENSE) for more information.
+Licensed under the MIT, see [LICENSE](LICENSE) for more information.
 
 
