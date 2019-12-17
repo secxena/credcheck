@@ -1,21 +1,28 @@
 import json
-import re
-import os
 import logging
-import sys
-from requests import get, put, post
-from credcheck.exceptions import ParametersRequiredError
-#sys.tracebacklimit=0
-logging.basicConfig(format="%(asctime)s - %(name)s (%(lineno)s) - %(levelname)s: %(message)s",datefmt='%Y.%m.%d %H:%M:%S')
-class CredUtils(object):
+import os
+import re
 
-    def __init__(self,):
+from requests import get, put, post
+
+from credcheck.exceptions import ParametersRequiredError
+
+# sys.tracebacklimit=0
+from credcheck.modules import ssh_client, http_client
+
+logging.basicConfig(
+    format="%(asctime)s - %(name)s (%(lineno)s) - %(levelname)s: %(message)s",
+    datefmt="%Y.%m.%d %H:%M:%S",
+)
+
+
+class CredUtils:
+    def __init__(self):
         """
         """
-        self.rootdir =  os.path.abspath(os.path.dirname(__file__))
+        self.rootdir = os.path.abspath(os.path.dirname(__file__))
         self.data = self.load_data()
 
-    
     @property
     def _services(self):
         """
@@ -24,43 +31,38 @@ class CredUtils(object):
         """
         return list(self.data.keys())
 
-
     @property
-    def _protocol(self,):
+    def _protocol(self):
         """
         HTTP and SSH client to test over different protocols 
-        :rtype: protocol handler clients to checj credentials over different protocol
+        :rtype: protocol handler clients to check credentials over different protocol
         """
-        return {"http_client":http_client,"ssh_client":ssh_client}
-
+        return {"http_client": http_client, "ssh_client": ssh_client}
 
     @property
-    def _httpmethod(self,):
+    def _httpmethod(self):
         """
         :rtype
         """
-        return {"get":get,"post":post,"put":put}
+        return {"get": get, "post": post, "put": put}
 
-
-    def load_data(self,):
+    def load_data(self):
         """
         :rtype
         """
-        with open(self.rootdir + '/../data/api_key_meta.json','r') as f:
+        with open(self.rootdir + "/../data/api_key_meta.json", "r") as f:
             data = json.loads(f.read())
         return data
 
-
-    def check_validity(self,):
+    def check_validity(self):
         """
         :rtype
         """
-        for target,target_data in self.data.items():
-            self.data[target]['config']
-            #print(target_data)
+        for target, target_data in self.data.items():
+            self.data[target]["config"]
+            # print(target_data)
 
-
-    def _format(self,data_block,data):
+    def _format(self, data_block, data):
         """
         :param data_block: -
         :type data_block : -
@@ -69,22 +71,21 @@ class CredUtils(object):
         :rtype: -
         """
         # logging.debug("data to format %s", data_block)
-        _helper = data_block.get('helper')
-        if not data_block.get('config').get('request-type'):
-            data_block['config']['request-type'] = 'get'
+        _helper = data_block.get("helper")
+        if not data_block.get("config").get("request-type"):
+            data_block["config"]["request-type"] = "get"
         try:
-            data_block = self._filler(data_block['config'],data)
+            data_block = self._filler(data_block["config"], data)
         except KeyError:
-            logging.debug('Fatal Exception')
-            raise ParametersRequiredError(_helper.get('help'),_helper) from None
+            logging.debug("Fatal Exception")
+            raise ParametersRequiredError(_helper.get("help"), _helper) from None
         # logging.debug("formatted data %s", data_block)
-        if not data_block.get('args'):
-            data_block['args'] = {'timeout':10}
+        if not data_block.get("args"):
+            data_block["args"] = {"timeout": 10}
             logging.debug("Arguments are not present")
         else:
-            data_block['args']['timeout'] = 10
+            data_block["args"]["timeout"] = 10
         return data_block
-        
 
     def _filler(self, config_block, cred_data):
         """
@@ -95,32 +96,30 @@ class CredUtils(object):
         :rtype: - 
         """
         result = {}
-        for key,value in config_block.items():
-            if isinstance(value,dict):
+        for key, value in config_block.items():
+            if isinstance(value, dict):
                 try:
-                    d = self._filler(value,cred_data)
+                    d = self._filler(value, cred_data)
                     result[key] = d
                 except KeyError:
-                    logging.debug('Fuck it')
+                    logging.debug("Fuck it")
                     raise
             else:
-                    result[key] = value.format(**cred_data)
-
+                result[key] = value.format(**cred_data)
 
         return result
-        
 
-    def _handler(self,helper_block):
+    def _handler(self, helper_block):
         """
         :param helper_block: -
         :type helper_block: -
         :rtype: -
         """
-        if not helper_block['_verification_protocol']:
-            helper_block[_helper_function] = 'http'
+        if not helper_block["_verification_protocol"]:
+            helper_block[_helper_function] = "http"
         return helper_block
 
-    def _required(self,data_block):
+    def _required(self, data_block):
         """
         :param data_block: -
         :type data_block: -
@@ -128,10 +127,10 @@ class CredUtils(object):
         """
         _required_params = list()
         for key, value in data_block.items():
-            if isinstance(value,dict):
+            if isinstance(value, dict):
                 _required_params.extend(self._required(value))
             else:
-                _params = re.findall(r"{(.*?)}",value)
-                if len(_params)>0:
-                    _required_params.extend(_params)     
+                _params = re.findall(r"{(.*?)}", value)
+                if len(_params) > 0:
+                    _required_params.extend(_params)
         return set(_required_params)
