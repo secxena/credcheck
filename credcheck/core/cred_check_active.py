@@ -7,7 +7,8 @@ from credcheck.modules.http_client import CheckAPI
 class DynamicTest:
     def __init__(self):
         """
-        
+        Dynamic Test will test all kind of HTTP services
+        for now 
         """
         self.cred_utils = CredUtils()
 
@@ -46,7 +47,11 @@ class DynamicTest:
                 )
             else:
                 respo = CheckAPI(verify_ssl=False)._auth(config["url"], method)
-            print(json.dumps(respo, indent=4))
+            try:
+                result = "Response from the server: -> {} ".format(json.dumps(respo, indent=4))
+            except:
+                result = "Respone from the server: -> {}".format(respo)
+            print(result)
 
     def run(self):
         """
@@ -54,8 +59,3 @@ class DynamicTest:
         """
         for key, value in self.cred_utils.data.items():
             pass  # print(key)
-
-
-# dt = dynamicTest()
-# dt.checkIt('pagerduty')
-# print(yolo.find('AIzaIHQ2SLTSHFLUVQQAaaaaaaaaaaaaaaaaaaa'))

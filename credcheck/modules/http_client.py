@@ -46,8 +46,10 @@ class BaseClient:
         response = self._http_response(url, method, **kwargs)
         if not response.content:
             return {}
-
-        return response.json()
+        try:
+            return response.json()
+        except:
+            return response.content
 
 
 class CheckAPI(BaseClient):
