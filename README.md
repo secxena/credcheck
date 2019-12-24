@@ -38,6 +38,9 @@
 - [ ] Complete regex
 
 # Uses
+
+pre-requisite 3.6+
+
 ## Command line usage
 ```
 python main.py --service stripe --token sk_live_r3s7_0f_7h3_d37ails

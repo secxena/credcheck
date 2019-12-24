@@ -102,7 +102,7 @@ class CredUtils:
                     d = self._filler(value, cred_data)
                     result[key] = d
                 except KeyError:
-                    logging.debug("Fuck it")
+                    logging.debug("Problems with key")
                     raise
             else:
                 result[key] = value.format(**cred_data)
@@ -115,9 +115,9 @@ class CredUtils:
         :type helper_block: -
         :rtype: -
         """
-        if not helper_block["_verification_protocol"]:
+        #if not helper_block["_verification_protocol"]:
             # noinspection PyUnresolvedReferences
-            helper_block[_helper_function] = "http"  # TODO: Fix..?
+            #helper_block[_helper_function] = "http"  # TODO: Fix..?
         return helper_block
 
     def _required(self, data_block):
